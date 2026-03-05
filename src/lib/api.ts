@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://chinatown-three.vercel.app//api",
+  baseURL: "https://chinatown-three.vercel.app/api",
 });
 
 api.interceptors.request.use((config) => {
@@ -18,4 +18,5 @@ api.interceptors.request.use((config) => {
 
 
 export default api;
+
 
