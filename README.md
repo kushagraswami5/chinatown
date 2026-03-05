@@ -1,31 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chinatown Marketplace
 
-## Getting Started
+Chinatown Marketplace is a full-stack marketplace web application where vendors can list products and consumers can browse, add items to cart, manage addresses, and place orders.
 
-First, run the development server:
+The project is built using **Next.js, Prisma, PostgreSQL (Neon), Tailwind CSS, and Cloudinary for image uploads**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Live Demo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+https://chinatown-eight.vercel.app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## GitHub Repository
 
-To learn more about Next.js, take a look at the following resources:
+https://github.com/kushagraswami5/chinatown
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
+
+## Features
+
+### Consumer
+- Browse products
+- View product details
+- Add products to cart
+- Manage delivery addresses
+- Checkout and place orders
+
+### Vendor
+- Vendor dashboard
+- Add new products
+- Upload product images
+- Manage listed products
+- View customer orders
+
+### System Features
+- Authentication with JWT
+- Image upload using Cloudinary
+- PostgreSQL database hosted on Neon
+- API routes with Next.js
+- Responsive UI with Tailwind CSS
+
+---
+
+## Tech Stack
+
+Frontend  
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- ShadCN UI
+
+Backend  
+- Next.js API Routes
+- Prisma ORM
+
+Database  
+- PostgreSQL (Neon)
+
+Media Storage  
+- Cloudinary
+
+Deployment  
+- Vercel
+
+---
+
+## Installation (Run Locally)
+
+Clone the repository- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
