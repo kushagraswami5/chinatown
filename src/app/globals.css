@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* brand colors */
+:root {
+  --brand-red: #C8102E;
+  --brand-gold: #FFD700;
+  --brand-black: #111111;
+}
+
+.chinese-bg {
+  background-color: white;
+  background-image: radial-gradient(
+    rgba(200,16,46,1.00) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  animation: moveDots 5s linear infinite;
+}
+
+@keyframes moveDots {
+  from {
+    background-position: 0 0, 20px 20px;
+  }
+  to {
+    background-position: 40px 40px, 60px 60px;
+  }
+}
