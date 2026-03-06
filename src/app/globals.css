@@ -12,7 +12,7 @@ html, body {
 }
 
 body {
-  background-color: #EFE6DB;
+  background-color: white;
 
   background-image:
     radial-gradient(rgba(200,16,46,0.35) 2px, transparent 3px),
