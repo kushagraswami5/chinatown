@@ -7,21 +7,30 @@
   --brand-black: #111111;
 }
 
-.chinese-bg {
-  background-color: white;
-  background-image: radial-gradient(
-    rgba(200,16,46,1.00) 1px,
-    transparent 1px
-  );
-  background-size: 40px 40px;
-  animation: moveDots 5s linear infinite;
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background-color: #EFE6DB;
+
+  background-image:
+    radial-gradient(rgba(200,16,46,0.35) 2px, transparent 3px),
+    radial-gradient(rgba(255,215,0,0.7) 2px, transparent 3px);
+
+  background-size: 40px 40px, 40px 40px;
+
+  background-position: 0 0, 20px 20px;
+
+  animation: moveDots 2s linear infinite;
 }
 
 @keyframes moveDots {
   from {
     background-position: 0 0, 20px 20px;
   }
+
   to {
-    background-position: 40px 40px, 60px 60px;
+    background-position: 40px 40px, -20px -20px;
   }
 }

@@ -1,5 +1,11 @@
 import "./globals.css"
 import Navbar from "@/components/navbar"
+import { Ma_Shan_Zheng } from "next/font/google";
+
+const chineseFont = Ma_Shan_Zheng({
+  subsets: ["latin"],
+  weight: "400"
+});
 
 export const metadata = {
   title: "ChinaTown",
@@ -13,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body >
         <Navbar />
 
         <main className="max-w-7xl mx-auto px-6">
