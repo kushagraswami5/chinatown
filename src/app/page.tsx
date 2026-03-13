@@ -7,7 +7,7 @@ import Footer from "@/components/home/Footer"
 
 async function getProducts() {
 
-  const res = await fetch("/api/products", {
+  const res = await fetch("https://chinatown-three.vercel.app/api/products", {
     cache: "no-store"
   });
 
