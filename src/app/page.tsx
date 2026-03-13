@@ -7,7 +7,7 @@ import Footer from "@/components/home/Footer"
 
 async function getProducts() {
 
-  const res = await fetch("http://localhost:3000/api/products", {
+  const res = await fetch("/api/products", {
     cache: "no-store"
   });
 
