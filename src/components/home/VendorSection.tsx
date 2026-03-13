@@ -44,7 +44,7 @@ export default function VendorSection(){
             </Button>
           </Link>
 
-          <Link href="/vendor/login">
+          <Link href="/login">
             <Button variant="outline" className="w-full sm:w-auto">
               Vendor Login
             </Button>

@@ -2,64 +2,57 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 export default function HeroSection() {
 
   return (
 
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
+    <section className="relative w-full h-[520px] md:h-[620px] overflow-hidden">
 
-      <div>
+      {/* Banner Background */}
+      <Image
+        src="/banner.jpg"
+        alt="Chinese banner"
+        fill
+        priority
+        quality={100}
+        className="object-cover"
+      />
 
-        <motion.h1
-          initial={{ opacity:0, y:40 }}
-          animate={{ opacity:1, y:0 }}
-          transition={{ duration:0.6 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
-        >
-          Discover Authentic Chinese Products
-        </motion.h1>
+      {/* Overlay content */}
+      <div className="absolute inset-0 flex items-center justify-center text-center px-6">
 
-        <motion.p
-          initial={{ opacity:0 }}
-          animate={{ opacity:1 }}
-          transition={{ delay:0.3 }}
-          className="mt-4 text-muted-foreground text-sm md:text-base max-w-md"
-        >
-          Premium tea, ceramics, and traditional goods curated
-          for modern living across the UK.
-        </motion.p>
+        <div className="max-w-xl">
 
-        <motion.div
-          initial={{ opacity:0 }}
-          animate={{ opacity:1 }}
-          transition={{ delay:0.5 }}
-          className="mt-6 flex flex-col sm:flex-row gap-3"
-        >
+          <motion.h1
+            initial={{ opacity:0, y:40 }}
+            animate={{ opacity:1, y:0 }}
+            transition={{ duration:0.7 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-semibold text-black leading-snug"
+          >
+            AUTHENTIC <br/>
+            CHINESE TREASURES, <br/>
+            DELIVERED FROM <br/>
+            OUR UK WAREHOUSE.
+          </motion.h1>
 
-          <Link href="/products">
-            <Button className="bg-[#C8102E] text-white w-full sm:w-auto px-8 py-5">
-              Shop Now
-            </Button>
-          </Link>
+          <motion.div
+            initial={{ opacity:0 }}
+            animate={{ opacity:1 }}
+            transition={{ delay:0.4 }}
+            className="mt-6"
+          >
+            <Link href="/products">
+              <Button className="bg-[#D4AF37] text-black px-8 py-5 text-lg border border-black hover:bg-[#c19b2e]">
+                SHOP NOW
+              </Button>
+            </Link>
+          </motion.div>
 
-          <Link href="/categories">
-            <Button variant="outline" className="w-full sm:w-auto">
-              Browse Categories
-            </Button>
-          </Link>
+        </div>
 
-        </motion.div>
-
-      </div>
-
-      <div className="order-first md:order-last">
-        <img
-          src="/hero-product.jpeg"
-          alt="Chinese products"
-          className="rounded-xl shadow-lg w-full h-[220px] sm:h-[300px] md:h-[380px] object-cover"
-        />
       </div>
 
     </section>
