@@ -8,7 +8,7 @@ The project is built using **Next.js, Prisma, PostgreSQL (Neon), Tailwind CSS, a
 
 ## Live Demo
 
-https://chinatown-eight.vercel.app
+https://chinatown-three.vercel.app/
 
 ---
 
