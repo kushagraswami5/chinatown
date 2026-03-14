@@ -6,35 +6,25 @@ import VendorSection from "@/components/home/VendorSection"
 import Footer from "@/components/home/Footer"
 
 async function getProducts() {
+  // Use relative URL so it works in all environments (local, staging, production)
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-  const res = await fetch("https://chinatown-three.vercel.app/api/products", {
-    cache: "no-store"
-  });
-
+  const res = await fetch(`${baseUrl}/api/products`, { cache: "no-store" });
   const data = await res.json();
-
   return data.products;
 }
 
-export default async function HomePage(){
-
+export default async function HomePage() {
   const products = await getProducts();
 
-  return(
+  return (
     <main className="min-h-screen">
-
-      <HeroSection/>
-
-      <CategoriesSection/>
-
-      <FeaturedProducts products={products}/>
-
-      <FeaturesSection/>
-
-      <VendorSection/>
-
-      <Footer/>
-
+      <HeroSection />
+      <FeaturesSection />
+      <CategoriesSection />
+      <FeaturedProducts products={products} />
+      <VendorSection />
+      <Footer />
     </main>
   )
 }

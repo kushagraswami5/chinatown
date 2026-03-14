@@ -1,51 +1,48 @@
-export default function Footer(){
+import Link from "next/link"
 
-  return(
+export default function Footer() {
+  return (
+    <footer className="bg-[#0f0808]">
+      <div className="max-w-7xl mx-auto px-8 pt-14 pb-6">
 
-    <footer className="border-t py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-12">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center md:text-left">
+          <div>
+            <p className="font-serif text-lg text-[#c8a96e] mb-3">China<em className="not-italic text-white">Town</em></p>
+            <p className="text-xs text-[#7a6050] leading-relaxed max-w-[200px]">
+              Authentic Chinese products curated and delivered across the United Kingdom from our local warehouse.
+            </p>
+          </div>
 
-        <div>
-          <h3 className="font-bold text-lg mb-3">
-            ChinaTown
-          </h3>
+          <div>
+            <h5 className="text-[10px] tracking-[0.15em] text-[#c8a96e] uppercase mb-4">Shop</h5>
+            {[["New Arrivals", "/new"], ["All Products", "/products"], ["Categories", "/categories"], ["Brands", "/brands"]].map(([label, href]) => (
+              <Link key={href} href={href} className="block text-xs text-[#7a6050] hover:text-[#c8a96e] transition-colors mb-2.5">{label}</Link>
+            ))}
+          </div>
 
-          <p className="text-muted-foreground text-sm max-w-xs mx-auto md:mx-0">
-            Authentic Chinese products delivered across the UK.
-          </p>
+          <div>
+            <h5 className="text-[10px] tracking-[0.15em] text-[#c8a96e] uppercase mb-4">Support</h5>
+            {[["Contact Us", "/contact"], ["Shipping Info", "/shipping"], ["Returns", "/returns"], ["FAQs", "/faqs"]].map(([label, href]) => (
+              <Link key={href} href={href} className="block text-xs text-[#7a6050] hover:text-[#c8a96e] transition-colors mb-2.5">{label}</Link>
+            ))}
+          </div>
+
+          <div>
+            <h5 className="text-[10px] tracking-[0.15em] text-[#c8a96e] uppercase mb-4">Legal</h5>
+            {[["Privacy Policy", "/privacy"], ["Terms of Use", "/terms"], ["Cookie Policy", "/cookies"]].map(([label, href]) => (
+              <Link key={href} href={href} className="block text-xs text-[#7a6050] hover:text-[#c8a96e] transition-colors mb-2.5">{label}</Link>
+            ))}
+          </div>
+
         </div>
 
-        <div>
-          <h3 className="font-bold text-lg mb-3">
-            Support
-          </h3>
-
-          <ul className="space-y-2 text-muted-foreground text-sm">
-            <li className="hover:text-black cursor-pointer">Contact</li>
-            <li className="hover:text-black cursor-pointer">Shipping</li>
-            <li className="hover:text-black cursor-pointer">Returns</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-bold text-lg mb-3">
-            Legal
-          </h3>
-
-          <ul className="space-y-2 text-muted-foreground text-sm">
-            <li className="hover:text-black cursor-pointer">Privacy Policy</li>
-            <li className="hover:text-black cursor-pointer">Terms</li>
-          </ul>
+        <div className="border-t border-[#2a1818] pt-6 flex flex-col sm:flex-row justify-between items-center gap-2">
+          <p className="text-[11px] text-[#5a4030]">© {new Date().getFullYear()} ChinaTown Marketplace. All rights reserved.</p>
+          <p className="text-[11px] text-[#5a4030] tracking-widest">龍 · 福 · 壽</p>
         </div>
 
       </div>
-
-      <p className="text-center text-muted-foreground text-sm mt-8">
-        © {new Date().getFullYear()} ChinaTown Marketplace
-      </p>
-
     </footer>
-
   )
 }
