@@ -4,18 +4,19 @@ import FeaturedProducts from "@/components/home/FeaturedProducts"
 import FeaturesSection from "@/components/home/FeaturesSection"
 import VendorSection from "@/components/home/VendorSection"
 import Footer from "@/components/home/Footer"
+import { prisma } from "@/lib/prisma"
 
 async function getProducts() {
-  // Use relative URL so it works in all environments (local, staging, production)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-
-  const res = await fetch(`${baseUrl}/api/products`, { cache: "no-store" });
-  const data = await res.json();
-  return data.products;
+  // Query Prisma directly — never fetch localhost in server components
+  return prisma.product.findMany({
+    include: { images: true, category: true },
+    orderBy: { createdAt: "desc" },
+    take: 8,
+  })
 }
 
 export default async function HomePage() {
-  const products = await getProducts();
+  const products = await getProducts()
 
   return (
     <main className="min-h-screen">
