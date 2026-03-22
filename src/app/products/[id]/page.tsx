@@ -7,13 +7,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX:
-// 1. discountPrice display was inverted — was showing discountPrice as original, price as discounted
-// 2. Image gallery was single image — added multi-image gallery
-// 3. Star rating display added (was missing from reviews)
-// 4. Out-of-stock variants now disabled
-// 5. Cart button correctly uses auth check before redirect
-
 export default function ProductPage() {
   const params = useParams()
   const router = useRouter()
