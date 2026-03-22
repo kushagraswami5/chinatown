@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { Skeleton } from "@/components/ui/skeleton"
 
-// BUG FIX: page was a static placeholder with no actual product list.
-// Now fetches real vendor products from the new GET /api/vendor/products endpoint.
 
 export default function VendorProducts() {
   const [products, setProducts] = useState<any[]>([])
