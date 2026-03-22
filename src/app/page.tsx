@@ -7,7 +7,6 @@ import Footer from "@/components/home/Footer"
 import { prisma } from "@/lib/prisma"
 
 async function getProducts() {
-  // Query Prisma directly — never fetch localhost in server components
   return prisma.product.findMany({
     include: { images: true, category: true },
     orderBy: { createdAt: "desc" },
