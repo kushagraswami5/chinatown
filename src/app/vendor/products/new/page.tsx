@@ -6,12 +6,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX:
-// 1. No redirect after product creation — user stays on a half-cleared form
-// 2. Added discountPrice field (was missing despite spec requiring it)
-// 3. Added multi-variant UI (size + color + stock per variant)
-// 4. Added description as required check
-// 5. Added loading skeleton on image upload
 
 const CATEGORIES = ["Tea & Teaware", "Home Decor", "Snacks", "Herbs", "Kitchen", "Fashion", "Beauty", "Other"]
 
@@ -90,7 +84,7 @@ export default function AddProduct() {
       })
 
       toast.success("Product created successfully!")
-      // BUG FIX: redirect to product list after creation
+      
       router.push("/vendor/products")
     } catch (error: any) {
       toast.error(error?.response?.data?.error || "Error creating product")
