@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { ShoppingCart, Heart, User, Menu, X, ChevronDown } from "lucide-react"
+import Image from "next/image"
 import api from "@/lib/api"
 
 export default function Navbar() {
@@ -31,7 +32,7 @@ export default function Navbar() {
           const count = res.data?.items?.reduce((sum: number, item: any) => sum + item.quantity, 0) || 0
           setCartCount(count)
         })
-        .catch(() => {})
+        .catch(() => { })
     }
   }, [])
 
@@ -81,13 +82,20 @@ export default function Navbar() {
       </div>
 
       {/* MAIN NAVBAR */}
-      <div className="bg-[#1a0a0a] px-6 md:px-8 flex items-center gap-6 relative">
+      <div className="bg-[#1a0a0a] px-6 md:px-8 flex items-center gap-6 relative" style={{ minHeight: "72px" }}>
 
-        {/* LOGO */}
-        <Link href="/" className="shrink-0 py-4">
-          <span className="font-serif text-xl tracking-wide text-[#c8a96e]">
-            China<em className="not-italic text-white">Town</em>
-          </span>
+        {/* LOGO — circular badge floating over the navbar */}
+        <Link href="/" className="shrink-0 relative z-20" style={{ marginBottom: "-28px" }}>
+          <div className="w-[76px] h-[76px] md:w-[90px] md:h-[90px] rounded-full bg-[#1a0a0a] border-2 border-[#c8a96e] shadow-[0_6px_24px_rgba(0,0,0,0.7)] overflow-hidden flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="ChinaTown"
+              width={90}
+              height={90}
+              className="w-full h-full object-cover"
+              priority
+            />
+          </div>
         </Link>
 
         <div className="hidden md:block w-px h-8 bg-[#3a1a1a]" />
@@ -163,7 +171,7 @@ export default function Navbar() {
 
       {/* CATEGORY NAV */}
       <div className="bg-white border-b border-[#f0e8d8] hidden md:block">
-        <div className="max-w-7xl mx-auto flex items-center gap-8 px-8 text-[11px] tracking-[0.1em]">
+        <div className="max-w-7xl mx-auto flex items-center gap-8 text-[11px] tracking-[0.1em]" style={{ paddingLeft: "120px", paddingRight: "32px" }}>
           <Link href="/products" className="py-3 text-[#5a3a2a] hover:text-[#C8102E] transition-colors border-b-2 border-transparent hover:border-[#C8102E] -mb-px">SHOP ALL</Link>
           <div className="relative">
             <button onClick={() => setCatOpen(!catOpen)} className="flex items-center gap-1 py-3 text-[#5a3a2a] hover:text-[#C8102E] transition-colors">

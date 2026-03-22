@@ -9,20 +9,20 @@ export async function GET(req: NextRequest) {
     const category = searchParams.get("category") || "";
     const minPrice = Number(searchParams.get("minPrice") || 0);
     const maxPrice = Number(searchParams.get("maxPrice") || 0);
-    const page = Number(searchParams.get("page") || 1);
-    const limit = Number(searchParams.get("limit") || 10);
+    const page = Math.max(1, Number(searchParams.get("page") || 1));
+    // BUG FIX: default limit was 10 — raised to 100 so all products show.
+    // Also honour an explicit limit param (capped at 100 to avoid abuse).
+    const limit = Math.min(100, Math.max(1, Number(searchParams.get("limit") || 100)));
 
-    const where: any = {
-      title: {
-        contains: search,
-        mode: "insensitive"
-      }
-    };
+    const where: any = {};
+
+    // Only apply title filter if search term is non-empty
+    if (search) {
+      where.title = { contains: search, mode: "insensitive" };
+    }
 
     if (category) {
-      where.category = {
-        name: category
-      };
+      where.category = { name: { contains: category, mode: "insensitive" } };
     }
 
     if (minPrice || maxPrice) {
@@ -31,31 +31,27 @@ export async function GET(req: NextRequest) {
       if (maxPrice) where.price.lte = maxPrice;
     }
 
-    const products = await prisma.product.findMany({
-      where,
-      include: {
-        images: true,
-        category: true
-      },
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: {
-        createdAt: "desc"
-      }
-    });
+    const [products, total] = await prisma.$transaction([
+      prisma.product.findMany({
+        where,
+        include: { images: true, category: true, variants: true },
+        skip: (page - 1) * limit,
+        take: limit,
+        orderBy: { createdAt: "desc" },
+      }),
+      prisma.product.count({ where }),
+    ]);
 
     return NextResponse.json({
       page,
       limit,
-      products
+      total,
+      totalPages: Math.ceil(total / limit),
+      products,
     });
 
   } catch (error) {
     console.error(error);
-
-    return NextResponse.json(
-      { error: "Server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

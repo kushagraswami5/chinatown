@@ -12,13 +12,30 @@ export async function POST(req: NextRequest) {
 
     const { productId, variantId, quantity } = await req.json();
 
-    // Find or create cart
+    // BUG FIX: validate productId is provided
+    if (!productId) {
+      return NextResponse.json({ error: "productId is required" }, { status: 400 });
+    }
+
+    // BUG FIX: validate product exists and has sufficient stock
+    const product = await prisma.product.findUnique({ where: { id: productId } });
+    if (!product) return NextResponse.json({ error: "Product not found" }, { status: 404 });
+
+    const qty = quantity ?? 1;
+
+    if (variantId) {
+      const variant = await prisma.productVariant.findUnique({ where: { id: variantId } });
+      if (!variant) return NextResponse.json({ error: "Variant not found" }, { status: 404 });
+      if (variant.stock < qty) return NextResponse.json({ error: "Insufficient stock" }, { status: 400 });
+    } else {
+      if (product.totalStock < qty) return NextResponse.json({ error: "Insufficient stock" }, { status: 400 });
+    }
+
     let cart = await prisma.cart.findUnique({ where: { userId: user.userId } });
     if (!cart) {
       cart = await prisma.cart.create({ data: { userId: user.userId } });
     }
 
-    // Check if item already exists — upsert quantity instead of duplicating
     const existingItem = await prisma.cartItem.findFirst({
       where: { cartId: cart.id, productId, variantId: variantId ?? null },
     });
@@ -27,12 +44,12 @@ export async function POST(req: NextRequest) {
     if (existingItem) {
       cartItem = await prisma.cartItem.update({
         where: { id: existingItem.id },
-        data: { quantity: existingItem.quantity + (quantity ?? 1) },
+        data: { quantity: existingItem.quantity + qty },
         include: { product: true, variant: true },
       });
     } else {
       cartItem = await prisma.cartItem.create({
-        data: { cartId: cart.id, productId, variantId, quantity: quantity ?? 1 },
+        data: { cartId: cart.id, productId, variantId, quantity: qty },
         include: { product: true, variant: true },
       });
     }
@@ -54,10 +71,18 @@ export async function GET(req: NextRequest) {
 
     const cart = await prisma.cart.findUnique({
       where: { userId: user.userId },
-      include: { items: { include: { product: true, variant: true } } },
+      include: {
+        items: {
+          include: {
+            product: { include: { images: true } },
+            variant: true,
+          },
+        },
+      },
     });
 
-    return NextResponse.json(cart);
+    // BUG FIX: return empty cart shape instead of null to avoid client-side crashes
+    return NextResponse.json(cart ?? { items: [] });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
