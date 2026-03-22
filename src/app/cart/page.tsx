@@ -7,11 +7,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX:
-// 1. No auth check — unauthenticated users saw an empty broken cart
-// 2. No quantity update UI — spec requires being able to change quantity
-// 3. Variant display showed "null / null" when variant had Default values
-
 export default function CartPage() {
   const router = useRouter()
   const [items, setItems] = useState<any[]>([])
