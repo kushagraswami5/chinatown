@@ -6,10 +6,6 @@ import Link from "next/link"
 import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 
-// BUG FIX:
-// 1. No redirect if user is not logged in — showed blank page on 401
-// 2. No error handling — catch() was swallowing errors silently
-// 3. Missing order status badge display
 
 const STATUS_COLORS: Record<string, string> = {
   PENDING: "bg-gray-100 text-gray-600",
