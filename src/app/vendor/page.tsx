@@ -6,8 +6,6 @@ import { useRouter } from "next/navigation"
 import api from "@/lib/api"
 import { Skeleton } from "@/components/ui/skeleton"
 
-// BUG FIX: Dashboard was completely static. Now shows real stats (product count, order count)
-// and checks that user is actually logged in as VENDOR (no auth guard existed).
 
 export default function VendorDashboard() {
   const router = useRouter()
