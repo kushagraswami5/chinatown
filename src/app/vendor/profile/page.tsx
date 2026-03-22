@@ -5,12 +5,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX:
-// 1. Replaced alert() with toast
-// 2. Added validation for required fields
-// 3. Loads existing profile on mount (was always empty form)
-// 4. Uses PATCH when profile exists, POST when creating new
-// 5. Shows approval status
 
 export default function VendorProfile() {
   const [form, setForm] = useState({
