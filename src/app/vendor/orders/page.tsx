@@ -5,8 +5,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX: was a static placeholder. Now fetches real orders from GET /api/vendor/orders
-// and allows vendors to update order status.
 
 const STATUS_COLORS: Record<string, string> = {
   PENDING: "bg-gray-100 text-gray-600",
