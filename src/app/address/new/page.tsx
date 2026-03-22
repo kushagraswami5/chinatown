@@ -6,13 +6,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX:
-// 1. Replaced alert() with toast
-// 2. Added validation for required fields
-// 3. Used router.push instead of window.location.href
-// 4. Added loading state
-// 5. Matched brand styles (was completely unstyled)
-
 export default function AddAddressPage() {
   const router = useRouter()
   const [form, setForm] = useState({
