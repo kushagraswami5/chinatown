@@ -7,8 +7,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX: replaced alert() with toast, added input validation, added loading state,
-// added redirect after registration, matched brand styles
 export default function VendorRegisterPage() {
   const router = useRouter()
   const [form, setForm] = useState({ name: "", email: "", password: "" })
