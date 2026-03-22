@@ -6,9 +6,6 @@ import api from "@/lib/api"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
-// BUG FIX: /address/page.tsx was a duplicate of /address/new/page.tsx (both showed "Add Address" form).
-// This page should LIST saved addresses and let the user navigate to add a new one.
-
 export default function AddressPage() {
   const router = useRouter()
   const [addresses, setAddresses] = useState<any[]>([])
